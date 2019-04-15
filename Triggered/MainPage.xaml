@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Triggered" x:Class="Triggered.MainPage">
+    <Grid> 
+        <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+    
+    <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Grid.Row="0"  >
+        <!-- Place new controls here -->
+        <Label Text="If Pwstas Triggered you press here" HorizontalOptions="Center" FontSize="Large" VerticalOptions="CenterAndExpand" />
+        <Button x:Name="trigger" Text="He did" Clicked="Handle_Clicked"/>
+        
+     </StackLayout>
+    
+    
+    
+    <StackLayout HorizontalOptions="Center" Grid.Row="1">
+            <Button Text="Check Reports" BackgroundColor="Transparent" BorderWidth="0" Clicked="Handle_Clicked_1"/>
+            <Label FontSize="Small" Text="*All data used anonymously and for good purposes" />
+     </StackLayout>
+        
+        
+        </Grid>
+</ContentPage>
