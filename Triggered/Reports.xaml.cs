@@ -12,6 +12,7 @@ namespace Triggered
            
             InitializeComponent();
             Handler handle = new Handler();
+            handle.LoadStuff();
             ReportsList.ItemsSource = handle.getDateTime();
         }
     }

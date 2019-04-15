@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Microsoft.WindowsAzure.MobileServices;
 
@@ -38,7 +39,7 @@ namespace Triggered
 
         public  Handler()
         {
-            LoadStuff();
+           
         }
 
 
@@ -51,9 +52,9 @@ namespace Triggered
 
 
 
-        public async void LoadStuff()
+        public async  Task LoadStuff()
         {
-            UserDialogs.Instance.ShowLoading("Downloadings Reports");
+            UserDialogs.Instance.ShowLoading("Downloading Reports");
             try
             {
                 var Report = App.client.GetTable<TriggerDB>();
@@ -67,6 +68,7 @@ namespace Triggered
 
 
                 }
+                
                 UserDialogs.Instance.HideLoading();
 
 
