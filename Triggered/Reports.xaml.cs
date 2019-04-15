@@ -7,11 +7,12 @@ namespace Triggered
 {
     public partial class Reports : ContentPage
     {
-        public Reports(List<string> DateTime)
+        public Reports()
         {
            
             InitializeComponent();
-            ReportsList.ItemsSource = DateTime;
+            Handler handle = new Handler();
+            ReportsList.ItemsSource = handle.getDateTime();
         }
     }
 }

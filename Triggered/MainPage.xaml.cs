@@ -38,9 +38,11 @@ namespace Triggered
          public void Handle_Clicked_1(object sender, System.EventArgs e)
         {
 
-            Handler handle = new Handler();
+            this.Navigation.PushAsync(new Reports(), true);
 
-            this.Navigation.PushAsync(new Reports(handle.getDateTime()), true);
+
+
+
         }
     }
 }
