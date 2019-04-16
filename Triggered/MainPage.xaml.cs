@@ -23,7 +23,7 @@ namespace Triggered
             {
                 InputType = InputType.Name,
                 OkText = "Save",
-                Title = "What excactly Pwstas did",
+                Title = "What exactly have hi do",
             });
             if (pResult.Ok && !string.IsNullOrWhiteSpace(pResult.Text))
             {
@@ -44,5 +44,10 @@ namespace Triggered
 
 
         }
+
+         private void Button_OnClicked(object sender, EventArgs e)
+         {
+             this.Navigation.PushAsync(new About(), true);
+         }
     }
 }

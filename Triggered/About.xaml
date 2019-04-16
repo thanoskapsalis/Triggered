@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Triggered.About">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Triggered is a mashine learning application:
+                   It is build throw two main branches:1st Branch: Gain Information. All the users of the database give information to a database by adding facts and dates about the days that got triggered
+                   2nds Branch Mashine Learning: Data will be used as an input for a small ai project in order to predict when the user will be triggered"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

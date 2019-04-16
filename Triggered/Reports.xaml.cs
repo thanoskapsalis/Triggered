@@ -9,7 +9,7 @@ namespace Triggered
     {
         public Reports()
         {
-           
+          
             InitializeComponent();
             Handler handle = new Handler();
             handle.LoadStuff();
