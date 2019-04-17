@@ -4,22 +4,23 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions> 
 
 
         <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="*" />
-        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Button Grid.Column="0" Grid.Row="0" BackgroundColor="Transparent" Text="About" Clicked="Button_OnClicked"></Button>
-    
-    <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.Column="1"  >
+        <Button Grid.Column="2" Grid.Row="0" BackgroundColor="Transparent" Text="LogIn" Clicked="Acc_manage" ></Button>
+
+        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.Column="1"  >
         <!-- Place new controls here -->
-        <Label Text="If Someone Triggered you press here" HorizontalOptions="Center" FontSize="Large" VerticalOptions="CenterAndExpand" />
-        <Button x:Name="trigger" Text="He did" Clicked="Handle_Clicked"/>
+            <Label Text="If Someone Triggered you press here" HorizontalOptions="Center" FontSize="Large" VerticalOptions="CenterAndExpand" />
+            <Button x:Name="trigger" Text="He did" Clicked="Handle_Clicked"/>
         
      </StackLayout>
     

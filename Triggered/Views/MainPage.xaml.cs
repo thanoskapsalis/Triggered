@@ -49,5 +49,10 @@ namespace Triggered
          {
              this.Navigation.PushAsync(new About(), true);
          }
+
+        private void Acc_manage(object sender, EventArgs e)
+        {
+            this.Navigation.PushAsync(new AccountForm(), true);
+        }
     }
 }

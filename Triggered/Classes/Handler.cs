@@ -23,7 +23,7 @@ namespace Triggered
 
                 trigger_event.InsertAsync(trigger);
                 UserDialogs.Instance.HideLoading();
-                UserDialogs.Instance.Alert("Data Successfully Imported");
+                UserDialogs.Instance.Alert("Data Successfully Imported.If you have not Register yet.....Please Register and you will have exclusive content");
 
 
             }
