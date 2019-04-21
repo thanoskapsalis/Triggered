@@ -7,13 +7,20 @@ namespace Triggered
 {
     public partial class Reports : ContentPage
     {
-        public Reports()
+        public  Reports()
         {
           
             InitializeComponent();
+            Run();
+            
+        }
+
+        //Wait for server to load and then print the results
+        public async void Run()
+        {
             Handler handle = new Handler();
-            handle.LoadStuff();
-            ReportsList.ItemsSource = handle.getDateTime();
+           await handle.LoadStuff();
+           ReportsList.ItemsSource = handle.getDateTime();
         }
     }
 }

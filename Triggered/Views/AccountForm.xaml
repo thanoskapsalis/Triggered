@@ -6,7 +6,7 @@
         <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
             <Entry x:Name="username" Placeholder="Username"></Entry>
             <Entry x:Name="password" IsPassword="True" Placeholder="Username"></Entry>
-            <Button x:Name="LogIn" HorizontalOptions="Center"></Button>
+            <Button x:Name="LogIn" Text="Login" HorizontalOptions="Center"></Button>
             <Button x:Name="regtister" BackgroundColor="Transparent" Text="Don't have an account? Click Here to Register" FontSize="Small"></Button>
         </StackLayout>
     </ContentPage.Content>
