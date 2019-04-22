@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -31,5 +32,18 @@ namespace Triggered
         {
             // Handle when your app resumes
         }
+
+        public static IAuthenticate Authenticator { get; private set; }
+
+        public static void Init(IAuthenticate authenticator)
+        {
+            Authenticator = authenticator;
+        }
+
+        public interface IAuthenticate
+        {
+            Task<bool> Authenticate();
+        }
+
     }
 }
