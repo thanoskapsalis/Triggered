@@ -18,8 +18,8 @@ namespace Triggered
             
             try
             {
-                UserDialogs.Instance.ShowLoading("Sending Data....");
-                IMobileServiceTable<TriggerDB> trigger_event = App.client.GetTable<TriggerDB>();
+               UserDialogs.Instance.ShowLoading("Sending Data....");
+                var trigger_event = App.client.GetTable<TriggerDB>();
 
                 trigger_event.InsertAsync(trigger);
                 UserDialogs.Instance.HideLoading();
