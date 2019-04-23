@@ -7,7 +7,7 @@
             <Entry x:Name="username" Placeholder="Username"></Entry>
             <Entry x:Name="password" IsPassword="True" Placeholder="Username"></Entry>
             <Button x:Name="LogIn" Text="Login" HorizontalOptions="Center" Clicked="LogIn_OnClicked" />
-            <Button x:Name="regtister" BackgroundColor="Transparent" Text="Don't have an account? Click Here to Register" FontSize="Small"></Button>
+            <Button x:Name="regtister" BackgroundColor="Transparent" Text="Don't have an account? Click Here to Register" FontSize="Small" Clicked="Regtister_OnClicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

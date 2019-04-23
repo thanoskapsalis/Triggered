@@ -10,6 +10,7 @@ namespace Triggered.Classes
     {
         private readonly string password;
         private readonly string username;
+        private bool user_status;
         private bool greenlight;
 
         IMobileServiceTable<UserData> UserData = App.client.GetTable<UserData>();
@@ -37,15 +38,39 @@ namespace Triggered.Classes
                 Array.Copy(hash, 0, hasBytes, 16, 20);
                 var savedPasswordHash = Convert.ToBase64String(hasBytes);
                 var user = new UserData(username, savedPasswordHash);
-                UserData.InsertAsync(user);
+                await UserData.InsertAsync(user);
                 UserDialogs.Instance.HideLoading();
             }
+        
         }
 
-        public async void Login()
+        public async Task Login()
         {
+            UserDialogs.Instance.Loading("Sign in");
             var result = await UserData.Where(x => x.username.Contains(username)).ToListAsync();
-            
+            if (result.Count == 1)
+            {
+                foreach (var i in result)
+                {
+                    string savedPasswordHash = i.password.ToString();
+                    byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
+                    byte[] salt = new byte[16];
+                    Array.Copy(hashBytes,0,salt,0,16);
+                    var pbkfd2 = new Rfc2898DeriveBytes(password,salt,10000);
+                    byte[] hash = pbkfd2.GetBytes(20);
+                    if (GrantAccess(hashBytes,hash))
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        user_status = true;
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        await UserDialogs.Instance.AlertAsync("Wrong Username or Password");
+                    }
+
+                }
+            }
 
 
         }
@@ -73,5 +98,20 @@ namespace Triggered.Classes
                 UserDialogs.Instance.Alert(e.ToString());
             }
         }
+
+        public bool GrantAccess(byte[] hashBytes,byte[] hash)
+        {
+            bool toreturn = true;
+            for (int i = 0; i < 20; i++)
+            {
+                if (hashBytes[i + 16] != hash[i])
+                    toreturn =false;
+                
+            }
+            return toreturn;
+
+        }
+
+        public bool get_user_status() => user_status;
     }
 }

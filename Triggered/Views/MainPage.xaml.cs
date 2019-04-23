@@ -11,9 +11,11 @@ namespace Triggered
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+       
+        public MainPage(string usernameText)
         {
             InitializeComponent();
+            active_user.Text = usernameText;
         }
 
         public async void Handle_Clicked(Object sender, EventArgs e)

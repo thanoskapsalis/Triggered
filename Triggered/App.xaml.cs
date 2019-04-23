@@ -13,7 +13,7 @@ namespace Triggered
         {
             InitializeComponent();
            
-            MainPage = new NavigationPage( new MainPage());
+            MainPage = new NavigationPage( new AccountForm());
         }
 
         public static MobileServiceClient client = new MobileServiceClient("https://triggered.azurewebsites.net");
