@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Triggered.Views.Register"
+             Title="Register">
+    <ContentPage.Content>
+        <StackLayout >
+            
+            <Label TextColor="Red" HorizontalOptions="Center" x:Name="error"></Label>
+            <Entry Placeholder="Username" x:Name="username"></Entry>
+           <Entry Placeholder="password" x:Name="password" IsPassword="True"></Entry>
+           <Entry Placeholder="Password confirm" x:Name="password2" IsPassword="True"></Entry>
+            <Button VerticalOptions="End" x:Name="register" Text="Register" Clicked="Register_OnClicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

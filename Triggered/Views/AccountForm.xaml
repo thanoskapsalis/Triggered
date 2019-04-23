@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Triggered.AccountForm">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <Image Source="vape.png" HorizontalOptions="Center" Scale="0.5"></Image>
             <Entry x:Name="username" Placeholder="Username"></Entry>
-            <Entry x:Name="password" IsPassword="True" Placeholder="Username"></Entry>
+            <Entry x:Name="password" IsPassword="True" Placeholder="Password"></Entry>
             <Button x:Name="LogIn" Text="Login" HorizontalOptions="Center" Clicked="LogIn_OnClicked" />
             <Button x:Name="regtister" BackgroundColor="Transparent" Text="Don't have an account? Click Here to Register" FontSize="Small" Clicked="Regtister_OnClicked"></Button>
         </StackLayout>

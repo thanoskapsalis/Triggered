@@ -15,7 +15,9 @@ namespace Triggered
         public MainPage(string usernameText)
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             active_user.Text = usernameText;
+            
         }
 
         public async void Handle_Clicked(Object sender, EventArgs e)
