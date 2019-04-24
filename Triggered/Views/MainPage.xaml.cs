@@ -17,7 +17,8 @@ namespace Triggered
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             active_user.Text = usernameText;
-            
+            BackgroundImage="level10.png";
+
         }
 
         public async void Handle_Clicked(Object sender, EventArgs e)
@@ -33,7 +34,7 @@ namespace Triggered
             {
                 comment = pResult.Text.ToString();
             }
-            TriggerDB trigger = new TriggerDB(DateTime.Now, comment);
+            TriggerDB trigger = new TriggerDB(DateTime.Now, comment,active_user.Text);
             Handler handle = new Handler(trigger);
         }
 

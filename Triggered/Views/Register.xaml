@@ -4,7 +4,7 @@
              x:Class="Triggered.Views.Register"
              Title="Register">
     <ContentPage.Content>
-        <StackLayout >
+        <StackLayout  VerticalOptions="StartAndExpand">
             
             <Label TextColor="Red" HorizontalOptions="Center" x:Name="error"></Label>
             <Entry Placeholder="Username" x:Name="username"></Entry>

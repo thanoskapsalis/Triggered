@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Triggered.Classes
+﻿namespace Triggered.Classes
 {
-    class UserData
+    internal class UserData
     {
-        public  string id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-
         public UserData(string username, string password)
         {
-            this.username = username;
-            this.password = password;
+            this.username=username;
+            this.password=password;
         }
-        
+
+        public string id { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string stars { get; set; }
     }
 }
