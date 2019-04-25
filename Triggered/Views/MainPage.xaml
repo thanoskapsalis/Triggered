@@ -18,7 +18,7 @@
         <Button Grid.Column="0" Grid.Row="0" BackgroundColor="White" Text="About" Clicked="Button_OnClicked" BorderWidth="0"  Padding="0"  ></Button>
         <Button Text="Check Reports" BackgroundColor="White" Grid.Column="1" Grid.Row="0" BorderWidth="0" Clicked="Handle_Clicked_1"/>
         <Button x:Name="active_user" Grid.Column="2" Grid.Row="0" BackgroundColor="White" BorderWidth="0" Padding="0"></Button>
-
+       
         <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.Column="1"  >
         <!-- Place new controls here -->
             <Label Text="If Someone Triggered you press here" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand" />
