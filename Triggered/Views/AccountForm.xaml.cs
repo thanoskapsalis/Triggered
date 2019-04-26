@@ -18,12 +18,21 @@ namespace Triggered
 
         private async void LogIn_OnClicked(object sender, EventArgs e)
         {
-            UserDialogs.Instance.ShowLoading();
-            var user=new UserHandler(username.Text, password.Text);
-            await user.Login ();
-            UserDialogs.Instance.HideLoading ();
-            if (user.get_user_status ())
-                await Navigation.PushAsync(new MainPage(username.Text), true);
+            try
+            {
+                UserDialogs.Instance.ShowLoading ();
+                var user=new UserHandler(username.Text, password.Text);
+                await user.Login ();
+                int star=user.get_user_stars ();
+                UserDialogs.Instance.HideLoading ();
+                if (user.get_user_status ())
+                    await Navigation.PushAsync(new MainPage(username.Text, star), true);
+
+            }
+            catch (Exception exception)
+            {
+                UserDialogs.Instance.Alert(exception.ToString ());
+            }
         }
 
         private void Regtister_OnClicked(object sender, EventArgs e)

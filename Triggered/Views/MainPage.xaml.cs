@@ -1,63 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using Acr.UserDialogs;
+using Triggered.Classes;
 using Xamarin.Forms;
 
 namespace Triggered
 {
     public partial class MainPage : ContentPage
     {
-       
-        public MainPage(string usernameText)
+        private int user_stars;
+        public MainPage(string usernameText,int user_stars)
         {
-            InitializeComponent();
+            InitializeComponent ();
             NavigationPage.SetHasNavigationBar(this, false);
-            active_user.Text = usernameText;
+            this.user_stars=user_stars;
+            active_user.Text=usernameText;
             BackgroundImage="level10.png";
-
         }
 
-        public async void Handle_Clicked(Object sender, EventArgs e)
+        public async void Handle_Clicked(object sender, EventArgs e)
         {
-            String comment = null;
-            PromptResult pResult = await UserDialogs.Instance.PromptAsync(new PromptConfig
+            UserDialogs.Instance.ShowLoading();
+            string comment=null;
+            var pResult=await UserDialogs.Instance.PromptAsync(new PromptConfig
             {
-                InputType = InputType.Name,
-                OkText = "Save",
-                Title = "What exactly have hi do",
+                InputType=InputType.Name,
+                OkText="Save",
+                Title="What exactly have hi do"
             });
-            if (pResult.Ok && !string.IsNullOrWhiteSpace(pResult.Text))
-            {
-                comment = pResult.Text.ToString();
-            }
-            TriggerDB trigger = new TriggerDB(DateTime.Now, comment,active_user.Text);
-            Handler handle = new Handler(trigger);
+            if (pResult.Ok && !string.IsNullOrWhiteSpace(pResult.Text)) comment=pResult.Text;
+            var trigger=new TriggerDB(DateTime.Now, comment, active_user.Text);
+            var handle=new Handler(trigger);
+            var  toadd= new  UserHandler(active_user.Text,user_stars+1);
+            toadd.Add_Stars ();
+            UserDialogs.Instance.HideLoading ();
+
         }
 
+       
 
 
-         public void Handle_Clicked_1(object sender, System.EventArgs e)
+        public void Handle_Clicked_1(object sender, EventArgs e)
         {
-
-            this.Navigation.PushAsync(new Reports(), true);
-
-
-
-
+            Navigation.PushAsync(new Reports (), true);
         }
 
-         private void Button_OnClicked(object sender, EventArgs e)
-         {
-             this.Navigation.PushAsync(new About(), true);
-         }
+        private void Button_OnClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new About (), true);
+        }
 
         private void Acc_manage(object sender, EventArgs e)
         {
-            this.Navigation.PushAsync(new AccountForm(), true);
+            Navigation.PushAsync(new AccountForm (), true);
         }
     }
 }

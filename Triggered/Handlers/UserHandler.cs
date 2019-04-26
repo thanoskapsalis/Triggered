@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
@@ -12,6 +13,7 @@ namespace Triggered.Classes
         private readonly string username;
         private bool greenlight;
         private bool user_status;
+        private int user_star;
 
         private readonly IMobileServiceTable<UserData> UserData=App.client.GetTable<UserData> ();
 
@@ -19,6 +21,12 @@ namespace Triggered.Classes
         {
             this.username=username;
             this.password=password;
+        }
+
+        public UserHandler(string username, int user_star)
+        {
+            this.user_star=user_star;
+            this.username=username;
         }
 
 
@@ -35,7 +43,7 @@ namespace Triggered.Classes
                 Array.Copy(salt, 0, hasBytes, 0, 16);
                 Array.Copy(hash, 0, hasBytes, 16, 20);
                 var savedPasswordHash=Convert.ToBase64String(hasBytes);
-                var user=new UserData(username, savedPasswordHash);
+                var user=new UserData(username, savedPasswordHash,0);
                 await UserData.InsertAsync(user);
                 user_status=true;
                 UserDialogs.Instance.HideLoading ();
@@ -46,30 +54,61 @@ namespace Triggered.Classes
             }
         }
 
-        public async Task Login ()
+        public async void Add_Stars ()
         {
-            //UserDialogs.Instance.Loading("Sign in");
-            var result=await UserData.Where(x => x.username.Contains(username)).ToListAsync ();
-            if (result.Count == 1)
+            try
+            {
+                UserDialogs.Instance.ShowLoading("Registering");
+                var result=await UserData.Where(x => x.username.Contains(username)).ToListAsync ();
                 foreach (var i in result)
                 {
-                    var savedPasswordHash=i.password;
-                    var hashBytes=Convert.FromBase64String(savedPasswordHash);
-                    var salt=new byte[16];
-                    Array.Copy(hashBytes, 0, salt, 0, 16);
-                    var pbkfd2=new Rfc2898DeriveBytes(password, salt, 10000);
-                    var hash=pbkfd2.GetBytes(20);
-                   // UserDialogs.Instance.HideLoading ();
-                    if (GrantAccess(hashBytes, hash))
-                    {
-                        user_status=true;
-                    }
-                    else
-                    {
-                       // UserDialogs.Instance.HideLoading ();
-                        await UserDialogs.Instance.AlertAsync("Wrong Username or Password");
-                    }
+                    UserData selected_user=new UserData(i.username, i.stars);
+                    selected_user.stars=user_star;
+                    await UserData.UpdateAsync(selected_user);
                 }
+
+                
+            }
+            catch (Exception e)
+            {
+                UserDialogs.Instance.Alert(e.ToString ());
+            }
+        }
+
+
+        public async Task Login ()
+        {
+            try
+            {
+                var result = await UserData.Where(x => x.username.Contains(username) ).ToListAsync();
+                if (result.Count == 1)
+                    foreach (var i in result)
+                    {
+                        var savedPasswordHash = i.password;
+                        var hashBytes = Convert.FromBase64String(savedPasswordHash);
+                        var salt = new byte[16];
+                        Array.Copy(hashBytes, 0, salt, 0, 16);
+                        var pbkfd2 = new Rfc2898DeriveBytes(password, salt, 10000);
+                        var hash = pbkfd2.GetBytes(20);
+                        // UserDialogs.Instance.HideLoading ();
+                        if (GrantAccess(hashBytes, hash))
+                        {
+                            user_status = true;
+                        }
+                        else
+                        {
+                            // UserDialogs.Instance.HideLoading ();
+                            await UserDialogs.Instance.AlertAsync("Wrong Username or Password");
+                        }
+                    }
+
+            }
+            catch (Exception e)
+            {
+                UserDialogs.Instance.Alert("EPPP"+e.ToString ());
+            }
+            //UserDialogs.Instance.Loading("Sign in");
+            
         }
 
 
@@ -108,6 +147,11 @@ namespace Triggered.Classes
         public bool get_user_status ()
         {
             return user_status;
+        }
+
+        public int get_user_stars ()
+        {
+            return user_star;
         }
     }
 }
